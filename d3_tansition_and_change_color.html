@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+		<title>d3 test</title>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+
+
+<body>
+
+
+<script>
+	var dataArray = [10,20];
+
+	var canvas = d3.select('body')
+									.append('svg')
+									.attr('width',500)
+									.attr('height',500);
+
+	var circle1 = canvas.append('circle')
+										.attr('r',10)
+										.attr('cx',200)
+										.attr('cy',200);
+
+
+	var circles = canvas.selectAll('circle')
+									.data(dataArray)
+									.attr('fill','red')
+									.enter()
+										.append('circle')
+										.attr('r',10)
+										.attr('cx',50)
+										.attr('cy',50)
+										.attr('fill','green');
+
+
+	circles.transition()
+						.duration(1500)
+						.delay(500)
+						.attr('cx',300)
+						.transition()
+							.attr('cy',125)
+							.each('end', function(){d3.select(this).attr('fill','steelblue')});
+
+	circle1.transition()
+						.duration(1500)
+						.delay(500)
+						.attr('cx',300)
+						.transition()
+							.attr('cy',145)
+							.each('end', function(){d3.select(this).attr('fill','steelblue')});
+
+
+
+</script>
+
+
+
+
+
+</body>
+
+
+</html>
